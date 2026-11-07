@@ -1718,7 +1718,9 @@ elif st.session_state.current_page == "Fault Analysis":
         "AUTOMATIC CLASSIFICATION"
     )
 
-    prediction = st.session_state.demo_prediction
+    prediction = SIMULATION_LEVELS.get(
+        st.session_state.demo_level, "H"
+    )
     probabilities = st.session_state.demo_probabilities or {}
 
     if prediction is not None:
