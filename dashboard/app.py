@@ -1775,7 +1775,7 @@ elif st.session_state.current_page == "Fault Analysis":
 
         st.info(
             "These scores represent the Random Forest model's vote "
-            "distribution. They are not calibrated confidence values."
+            "distribution."
         )
 
         st.markdown("**Recommended action**")
