@@ -1318,7 +1318,7 @@ if st.session_state.current_page == "Overview":
         title=dict(
             text="Model Accuracy Comparison",
             x=0.5,
-            font=dict(size=28, color="white")
+            font=dict(size=18, color="white")
         ),
         height=450,
         paper_bgcolor="#0B1018",
@@ -1327,7 +1327,7 @@ if st.session_state.current_page == "Overview":
         xaxis=dict(
             title=dict(text="Machine Learning Models", standoff=18),
             tickangle=0,
-            tickfont=dict(size=22, color="white"),
+            tickfont=dict(size=19, color="white"),
             showgrid=False
         ),
         yaxis=dict(
