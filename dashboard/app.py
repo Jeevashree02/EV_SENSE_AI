@@ -1251,15 +1251,15 @@ if st.session_state.current_page == "Overview":
         plot_bgcolor="#0B1018",
         margin=dict(l=70, r=50, t=75, b=110),
 
-        xaxis=dict(
-            title=dict(
-                text="Train-Test Split",
-                font=dict(size=19, color="white"),
-                standoff=18
-            ),
-            tickfont=dict(size=17, color="white"),
-            showgrid=False
-        ),
+       xaxis=dict(
+          title=dict(
+              text="Machine Learning Models",
+              font=dict(size=24, color="white"),
+              standoff=22
+          ),
+          tickfont=dict(size=21, color="white"),
+          showgrid=False
+       ),
 
         yaxis=dict(
             title=dict(
