@@ -1254,10 +1254,10 @@ if st.session_state.current_page == "Overview":
        xaxis=dict(
           title=dict(
               text="Machine Learning Models",
-              font=dict(size=18, color="white"),
-              standoff=15
+              font=dict(size=22, color="white"),
+              standoff=18
           ),
-          tickfont=dict(size=14, color="white"),
+          tickfont=dict(size=19, color="white"),
           showgrid=False
        ),
 
