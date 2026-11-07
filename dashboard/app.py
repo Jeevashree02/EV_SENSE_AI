@@ -1865,7 +1865,7 @@ elif st.session_state.current_page == "Fault Analysis":
         recommendation = recommendations[fault_code]
 
         # Display detailed recommendation panel
-        st.markdown(
+        st.html(
             f"""
             <div style="
                 background-color: #111a20;
@@ -1935,9 +1935,7 @@ elif st.session_state.current_page == "Fault Analysis":
                 </p>
 
             </div>
-            """,
-            unsafe_allow_html=True
-        )
+            """)
 
     else:
         st.info(
