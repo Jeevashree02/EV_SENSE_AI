@@ -1778,9 +1778,9 @@ elif st.session_state.current_page == "Fault Analysis":
             "distribution."
         )
 
-        # DETAILED RECOMMENDATIONS
+ # DETAILED RECOMMENDATIONS
 
-recommendations = {
+ recommendations = {
     "H": {
         "title": "Motor condition: Healthy",
         "summary": "No specific fault is indicated by the current model prediction.",
@@ -1900,7 +1900,7 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-    else:
+else:
         st.info(
             "Generate readings in Live Monitoring to view the AI diagnosis."
         )
