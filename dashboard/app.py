@@ -1778,133 +1778,171 @@ elif st.session_state.current_page == "Fault Analysis":
             "distribution."
         )
 
- # DETAILED RECOMMENDATIONS
+        # =============================================
+        # DETAILED FAULT-SPECIFIC RECOMMENDATIONS
+        # =============================================
 
         recommendations = {
-                "H": {
-                    "title": "Motor condition: Healthy",
-                    "summary": "No specific fault is indicated by the current model prediction.",
-                    "steps": [
-                        "Continue regular motor operation and routine maintenance.",
-                        "Monitor vibration readings periodically to identify changes.",
-                        "Check mounting bolts, wiring and motor alignment during scheduled inspections.",
-                        "Keep a record of vibration readings for future comparison."
-                    ]
-                },
-                "B1": {
-                    "title": "Insufficient Bearing Lubrication",
-                    "summary": "Insufficient lubrication can increase friction, vibration and bearing temperature.",
-                    "steps": [
-                        "Switch off and isolate the motor before physical inspection.",
-                        "Inspect the bearing for signs of dryness, friction or overheating.",
-                        "Apply the lubricant recommended by the bearing manufacturer.",
-                        "Avoid excessive lubrication, as over-lubrication can also cause problems.",
-                        "Check whether vibration and temperature reduce after maintenance.",
-                        "Schedule regular lubrication inspections."
-                    ]
-                },
-                "B2": {
-                    "title": "Severe Bearing Lubrication Problem",
-                    "summary": "Severe lubrication deficiency may cause rapid bearing wear and mechanical damage.",
-                    "steps": [
-                        "Stop the motor and isolate its power supply before inspection.",
-                        "Inspect the bearing for overheating, unusual noise and visible damage.",
-                        "Check for lubricant leakage, contamination or blocked lubrication paths.",
-                        "Replace damaged bearings if required.",
-                        "Apply the correct lubricant and quantity specified by the manufacturer.",
-                        "Test the motor only after the maintenance inspection is complete."
-                    ]
-                },
-                "B3": {
-                    "title": "Cracked Bearing Outer Ring",
-                    "summary": "A cracked bearing outer ring can affect smooth rotation and may lead to mechanical failure.",
-                    "steps": [
-                        "Stop the motor and isolate the power supply.",
-                        "Inspect the bearing housing and outer ring for visible cracks or damage.",
-                        "Check the shaft, bearing seat and mounting arrangement.",
-                        "Replace the damaged bearing rather than continuing operation.",
-                        "Verify correct alignment and secure mounting after replacement.",
-                        "Monitor vibration after maintenance."
-                    ]
-                },
-                "R": {
-                    "title": "Possible Broken Rotor Bar",
-                    "summary": "Rotor bar damage can cause abnormal vibration and uneven motor operation.",
-                    "steps": [
-                        "Stop the motor if abnormal vibration or noise is present.",
-                        "Inspect the motor using suitable electrical and mechanical diagnostic tests.",
-                        "Ask a qualified technician to examine the rotor and rotor cage.",
-                        "Check for abnormal heating and changes in motor current.",
-                        "Repair or replace damaged rotor components as required.",
-                        "Perform a controlled test after repair and compare vibration readings."
-                    ]
-                },
-                "V": {
-                    "title": "Voltage Imbalance",
-                    "summary": "Unequal supply voltages can cause uneven motor operation and excessive heating.",
-                    "steps": [
-                        "Measure all three supply voltages using an appropriate meter.",
-                        "Compare the voltage readings with the motor's rated specifications.",
-                        "Inspect electrical connections for looseness or damage.",
-                        "Check the power supply, cables and terminals for possible faults.",
-                        "Ask a qualified electrician to correct the imbalance.",
-                        "Recheck motor temperature and operating conditions after correction."
-                    ]
-                }
+            "H": {
+                "title": "Motor Condition: Healthy",
+                "summary": "No specific fault is indicated by the current model prediction.",
+                "steps": [
+                    "Continue regular motor operation and routine maintenance.",
+                    "Monitor vibration readings periodically to identify changes.",
+                    "Check mounting bolts, wiring and motor alignment during scheduled inspections.",
+                    "Keep a record of vibration readings for future comparison."
+                ]
+            },
+
+            "B1": {
+                "title": "Insufficient Bearing Lubrication",
+                "summary": "Insufficient lubrication can increase friction, vibration and bearing temperature.",
+                "steps": [
+                    "Switch off and isolate the motor before physical inspection.",
+                    "Inspect the bearing for signs of dryness, friction or overheating.",
+                    "Apply the lubricant recommended by the bearing manufacturer.",
+                    "Avoid excessive lubrication, as over-lubrication can also cause problems.",
+                    "Check whether vibration and temperature reduce after maintenance.",
+                    "Schedule regular lubrication inspections."
+                ]
+            },
+
+            "B2": {
+                "title": "Severe Bearing Lubrication Problem",
+                "summary": "Severe lubrication deficiency may cause rapid bearing wear and mechanical damage.",
+                "steps": [
+                    "Stop the motor and isolate its power supply before inspection.",
+                    "Inspect the bearing for overheating, unusual noise and visible damage.",
+                    "Check for lubricant leakage, contamination or blocked lubrication paths.",
+                    "Replace damaged bearings if required.",
+                    "Apply the correct lubricant and quantity specified by the manufacturer.",
+                    "Test the motor only after the maintenance inspection is complete."
+                ]
+            },
+
+            "B3": {
+                "title": "Cracked Bearing Outer Ring",
+                "summary": "A cracked bearing outer ring can affect smooth rotation and may lead to mechanical failure.",
+                "steps": [
+                    "Stop the motor and isolate the power supply.",
+                    "Inspect the bearing housing and outer ring for visible cracks or damage.",
+                    "Check the shaft, bearing seat and mounting arrangement.",
+                    "Replace the damaged bearing rather than continuing operation.",
+                    "Verify correct alignment and secure mounting after replacement.",
+                    "Monitor vibration after maintenance."
+                ]
+            },
+
+            "R": {
+                "title": "Possible Broken Rotor Bar",
+                "summary": "Rotor bar damage can cause abnormal vibration and uneven motor operation.",
+                "steps": [
+                    "Stop the motor if abnormal vibration or noise is present.",
+                    "Inspect the motor using suitable electrical and mechanical diagnostic tests.",
+                    "Ask a qualified technician to examine the rotor and rotor cage.",
+                    "Check for abnormal heating and changes in motor current.",
+                    "Repair or replace damaged rotor components as required.",
+                    "Perform a controlled test after repair and compare vibration readings."
+                ]
+            },
+
+            "V": {
+                "title": "Voltage Imbalance",
+                "summary": "Unequal supply voltages can cause uneven motor operation and excessive heating.",
+                "steps": [
+                    "Measure all three supply voltages using an appropriate meter.",
+                    "Compare the voltage readings with the motor's rated specifications.",
+                    "Inspect electrical connections for looseness or damage.",
+                    "Check the power supply, cables and terminals for possible faults.",
+                    "Ask a qualified electrician to correct the imbalance.",
+                    "Recheck motor temperature and operating conditions after correction."
+                ]
             }
-            
-            fault_code = prediction if prediction in recommendations else "H"
-            recommendation = recommendations[fault_code]
-            
-            st.markdown(f"""
+        }
+
+        # Select recommendation based on predicted fault
+        fault_code = prediction if prediction in recommendations else "H"
+        recommendation = recommendations[fault_code]
+
+        # Display detailed recommendation panel
+        st.markdown(
+            f"""
             <div style="
                 background-color: #111a20;
                 border: 1px solid #00cfc8;
                 border-radius: 12px;
-                padding: 25px;
+                padding: 30px;
                 margin-top: 25px;
                 margin-bottom: 25px;
             ">
+
                 <h2 style="
                     color: #00d6cf;
-                    font-size: 26px;
-                    margin-bottom: 15px;
-                ">Recommended Action</h2>
-            
+                    font-size: 30px;
+                    margin-bottom: 20px;
+                ">
+                    Recommended Action
+                </h2>
+
                 <h3 style="
                     color: #ffffff;
-                    font-size: 21px;
-                    margin-bottom: 12px;
-                ">{recommendation['title']}</h3>
-            
+                    font-size: 23px;
+                    margin-bottom: 15px;
+                ">
+                    {recommendation['title']}
+                </h3>
+
                 <p style="
                     color: #d5e0e8;
-                    font-size: 18px;
-                    line-height: 1.8;
-                ">{recommendation['summary']}</p>
-            
+                    font-size: 19px;
+                    line-height: 1.9;
+                ">
+                    {recommendation['summary']}
+                </p>
+
                 <h3 style="
                     color: #00d6cf;
-                    font-size: 20px;
-                    margin-top: 22px;
-                ">Suggested Maintenance Steps</h3>
-            
+                    font-size: 22px;
+                    margin-top: 25px;
+                    margin-bottom: 15px;
+                ">
+                    Suggested Maintenance Steps
+                </h3>
+
                 <ol style="
                     color: #ffffff;
                     font-size: 18px;
-                    line-height: 2;
-                    padding-left: 25px;
+                    line-height: 2.1;
+                    padding-left: 28px;
                 ">
-                    {''.join(f"<li>{step}</li>" for step in recommendation['steps'])}
+                    {''.join(
+                        f"<li>{step}</li>"
+                        for step in recommendation['steps']
+                    )}
                 </ol>
-            </div>
-            """, unsafe_allow_html=True)
 
-else:
+                <p style="
+                    color: #9daeb9;
+                    font-size: 14px;
+                    line-height: 1.7;
+                    border-top: 1px solid #34434c;
+                    padding-top: 15px;
+                    margin-top: 20px;
+                ">
+                    Note: These are suggested maintenance actions based
+                    on the model's predicted condition. Confirm the fault
+                    through physical inspection before performing repairs.
+                </p>
+
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+    else:
         st.info(
             "Generate readings in Live Monitoring to view the AI diagnosis."
         )
-
 
 # =====================================================
 # PAGE 4 — HISTORY AND REPORTS
