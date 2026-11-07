@@ -1615,52 +1615,6 @@ elif st.session_state.current_page == "Live Monitoring":
     else:
         show_empty_signal()
 
-    # AI MOTOR CONDITION
-
-    st.markdown("---")
-
-    section_heading(
-        "AI motor condition",
-        "MODEL PREDICTION"
-    )
-
-    if st.session_state.demo_prediction is not None:
-
-        prediction = st.session_state.demo_prediction
-
-        condition = CONDITIONS.get(
-            prediction,
-            {
-                "name": prediction,
-                "description": "Predicted motor condition"
-            }
-        )
-
-        st.metric(
-            "Predicted condition",
-            f"{prediction} — {condition['name']}"
-        )
-
-        st.caption(condition["description"])
-
-        st.markdown("**Model vote scores**")
-
-        probabilities = st.session_state.demo_probabilities or {}
-
-        for label, score in sorted(
-            probabilities.items(),
-            key=lambda item: item[1],
-            reverse=True
-        ):
-
-            st.write(f"{label}: {score:.1%}")
-            st.progress(float(score))
-
-    else:
-        st.info("Generate readings to view the AI prediction.")
-
-    if st.session_state.get("demo_error"):
-
         st.warning(
             "The vibration graph is available, but model inference "
             "needs attention: " + str(st.session_state.demo_error)
