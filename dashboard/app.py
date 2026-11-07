@@ -1318,24 +1318,24 @@ if st.session_state.current_page == "Overview":
         title=dict(
             text="Model Accuracy Comparison",
             x=0.5,
-            font=dict(size=17, color="white")
+            font=dict(size=24, color="white")
         ),
-        height=370,
+        height=450,
         paper_bgcolor="#0B1018",
         plot_bgcolor="#0B1018",
-        margin=dict(l=55, r=25, t=55, b=95),
+        margin=dict(l=70, r=50, t=75, b=110),
         xaxis=dict(
             title=dict(text="Machine Learning Models", standoff=15),
             tickangle=0,
-            tickfont=dict(size=11, color="white"),
+            tickfont=dict(size=19, color="white"),
             showgrid=False
         ),
         yaxis=dict(
-            title=dict(text="Accuracy (%)", font=dict(size=14)),
-            range=[0, 110],
+            title=dict(text="Accuracy (%)", font=dict(size=19)),
+            range=[0, 115],
             dtick=20,
             gridcolor="#303846",
-            tickfont=dict(size=12, color="white")
+            tickfont=dict(size=17, color="white")
         ),
         showlegend=False,
         font=dict(color="white")
