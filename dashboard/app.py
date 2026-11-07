@@ -1239,7 +1239,7 @@ if st.session_state.current_page == "Overview":
         cliponaxis=False
     ))
 
-     accuracy_fig.update_layout(
+    accuracy_fig.update_layout(
         title=dict(
             text="Accuracy Comparison",
             x=0.5,
