@@ -1215,12 +1215,16 @@ if st.session_state.current_page == "Overview":
 
     accuracy_fig = go.Figure()
 
-    accuracy_fig.add_trace(go.Bar(
+        accuracy_fig.add_trace(go.Bar(
         name="Accuracy",
         x=comparison["Train-Test Split"],
         y=comparison["Accuracy (%)"],
         marker_color="#559BD5",
-        width=0.32
+        width=0.32,
+        text=[f"{v:.1f}%" for v in comparison["Accuracy (%)"]],
+        textposition="outside",
+        textfont=dict(size=14, color="white"),
+        cliponaxis=False
     ))
 
     accuracy_fig.add_trace(go.Bar(
@@ -1228,39 +1232,54 @@ if st.session_state.current_page == "Overview":
         x=comparison["Train-Test Split"],
         y=comparison["F1-Score (%)"],
         marker_color="#F08032",
-        width=0.32
+        width=0.32,
+        text=[f"{v:.1f}%" for v in comparison["F1-Score (%)"]],
+        textposition="outside",
+        textfont=dict(size=14, color="white"),
+        cliponaxis=False
     ))
 
-    accuracy_fig.update_layout(
+     accuracy_fig.update_layout(
         title=dict(
             text="Accuracy Comparison",
             x=0.5,
-            font=dict(size=17, color="white")
+            font=dict(size=24, color="white")
         ),
         barmode="group",
-        height=350,
+        height=450,
         paper_bgcolor="#0B1018",
         plot_bgcolor="#0B1018",
-        margin=dict(l=55, r=25, t=55, b=105),
+        margin=dict(l=70, r=50, t=75, b=110),
+
         xaxis=dict(
-            title=dict(text="Train-Test Split", standoff=12),
-            tickfont=dict(size=12, color="white"),
+            title=dict(
+                text="Train-Test Split",
+                font=dict(size=19, color="white"),
+                standoff=18
+            ),
+            tickfont=dict(size=17, color="white"),
             showgrid=False
         ),
+
         yaxis=dict(
-            title=dict(text="Performance (%)", font=dict(size=14)),
-            range=[0, 110],
+            title=dict(
+                text="Performance (%)",
+                font=dict(size=19, color="white")
+            ),
+            range=[0, 120],
             dtick=20,
             gridcolor="#303846",
-            tickfont=dict(size=12, color="white")
+            tickfont=dict(size=17, color="white")
         ),
+
         legend=dict(
             orientation="h",
-            y=-0.32,
+            y=-0.27,
             x=0.5,
             xanchor="center",
-            font=dict(size=11, color="white")
+            font=dict(size=17, color="white")
         ),
+
         font=dict(color="white")
     )
 
@@ -1292,7 +1311,7 @@ if st.session_state.current_page == "Overview":
         width=0.48,
         text=[f"{v:.1f}%" for v in model_values],
         textposition="outside",
-        textfont=dict(size=10, color="white")
+        textfont=dict(size=19, color="white")
     ))
 
     model_fig.update_layout(
