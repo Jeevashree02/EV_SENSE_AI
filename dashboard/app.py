@@ -1215,7 +1215,7 @@ if st.session_state.current_page == "Overview":
 
     accuracy_fig = go.Figure()
 
-        accuracy_fig.add_trace(go.Bar(
+    accuracy_fig.add_trace(go.Bar(
         name="Accuracy",
         x=comparison["Train-Test Split"],
         y=comparison["Accuracy (%)"],
