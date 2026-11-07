@@ -1929,9 +1929,6 @@ elif st.session_state.current_page == "Fault Analysis":
                     padding-top: 15px;
                     margin-top: 20px;
                 ">
-                    Note: These are suggested maintenance actions based
-                    on the model's predicted condition. Confirm the fault
-                    through physical inspection before performing repairs.
                 </p>
 
             </div>
