@@ -1257,7 +1257,7 @@ if st.session_state.current_page == "Overview":
               font=dict(size=219, color="white"),
               standoff=18
           ),
-          tickfont=dict(size=19, color="white"),
+          tickfont=dict(size=17, color="white"),
           showgrid=False
        ),
 
